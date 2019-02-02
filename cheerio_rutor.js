@@ -18,17 +18,22 @@ let func = (ur, arr) => {
       $ = cheerio.load(body);
       let name1 = $(".tum a");
       let name2 = $(".gai a");
+
       let parce = (arg) => {
         for (let i = 0; i < $(arg).length; i++) {
           var text = $(arg[i]).text();
+
           if(text.length === 0) continue;
           var found = false;
+
           if( text.indexOf("iTunes") !== -1 ) {
             found = true;
           }
+
           if( text.indexOf("Лицензия") !== -1 ) {
             found = true;
           }
+          
           if (found) {
             arr.push(`<tr><td><a href="http://rutor.info/${$(arg[i]).attr("href")}">${text}</a></td></tr>`);
           }
