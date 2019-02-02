@@ -57,7 +57,8 @@ app.get("/", (req, res) => {
             } 
           </style>
         </head>
-        <body><table>
+        <body>
+          <table>
             <tbody>
               ${arrr.join('')}
             </tbody>
