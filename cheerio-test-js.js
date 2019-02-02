@@ -18,13 +18,17 @@ request(url, (error, response, body) => {
       
     let parce = (arg) => {
       for (let i = 0; i < $(arg).length; i++) {
-        if($(arg[i]).text().length !== 0) {
-          if( $(arg[i]).text().indexOf("iTunes") !== -1 ) {
-            arrr.push(`<tr><td><a href="http://rutor.info/${$(arg[i]).attr("href")}">${$(arg[i]).text()}</a></td></tr>`);
-          }
-          if( $(arg[i]).text().indexOf("Лицензия") !== -1 ) {
-            arrr.push(`<tr><td><a href="http://rutor.info/${$(arg[i]).attr("href")}">${$(arg[i]).text()}</a></td></tr>`);
-          }
+        var text = $(arg[i]).text();
+        if(text.length === 0) continue;
+        var found = false;
+        if( text.indexOf("iTunes") !== -1 ) {
+          found = true;
+        }
+        if( text.indexOf("Лицензия") !== -1 ) {
+          found = true;
+        }
+        if (found) {
+          arrr.push(`<tr><td><a href="http://rutor.info/${$(arg[i]).attr("href")}">${text}</a></td></tr>`);
         }
       }
     }
@@ -43,11 +47,19 @@ app.get("/", (req, res) => {
               font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
               font-size: 12px;
             }
+            a{
+              text-decoration: none;
+              color: #000000;
+            }
+            tr:hover {
+              background: #786b59; 
+              color: #ffe; 
+            } 
           </style>
         </head>
         <body><table>
             <tbody>
-              ${arrr}
+              ${arrr.join('')}
             </tbody>
           </table>
         </body>
