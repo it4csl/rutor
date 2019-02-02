@@ -38,9 +38,14 @@ app.get("/", (req, res) => {
     <html>
         <head>
           <meta charset="utf-8">
+          <style>
+            body, table{
+              font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+              font-size: 12px;
+            }
+          </style>
         </head>
-        <body>
-          <table>
+        <body><table>
             <tbody>
               ${arrr}
             </tbody>
