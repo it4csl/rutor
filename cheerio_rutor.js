@@ -6,7 +6,7 @@ const request = require("request");
 
 let app = express();
 
-let url = "http://rutor.info/top";
+let url = "http://rutor.info/new";
 
 let arrr = [];
 
@@ -51,7 +51,7 @@ app.get("/", (req, res) => {
               color: #000000;
             }
             tr:hover {
-              background: #786b59; 
+              background: #bccae0; 
               color: #ffe; 
             } 
           </style>
