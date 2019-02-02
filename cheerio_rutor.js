@@ -15,7 +15,6 @@ request(url, (error, response, body) => {
     $ = cheerio.load(body);
     let name1 = $(".tum a");
     let name2 = $(".gai a");
-      
     let parce = (arg) => {
       for (let i = 0; i < $(arg).length; i++) {
         var text = $(arg[i]).text();
