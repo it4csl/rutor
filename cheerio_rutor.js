@@ -21,16 +21,16 @@ let func = (ur, arr) => {
 
       let parce = (arg) => {
         for (let i = 0; i < $(arg).length; i++) {
-          var text = $(arg[i]).text();
+          let text = $(arg[i]).text();
 
           if(text.length === 0) continue;
-          var found = false;
+          let found = false;
 
-          if( text.indexOf("iTunes") !== -1 ) {
+          if( text.indexOf("iTunes") !== -1 && text.indexOf("UKR") === -1) {
             found = true;
           }
 
-          if( text.indexOf("Лицензия") !== -1 ) {
+          if( text.indexOf("Лицензия") !== -1 && text.indexOf("PC") === -1) {
             found = true;
           }
           
@@ -43,7 +43,7 @@ let func = (ur, arr) => {
       parce(name2);
 
       arr.sort((a, b) => {
-        var nameA=a.match("[А-Я][а-я]"), nameB=b.match("[А-Я][а-я]")
+        let nameA=a.match("[А-Я][а-я]"), nameB=b.match("[А-Я][а-я]")
         if (nameA < nameB) return -1
         if (nameA > nameB) return 1
         return 0
