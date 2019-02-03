@@ -84,3 +84,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(9999);
+
+setTimeout(() => process.exit(), 60000);
