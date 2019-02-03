@@ -41,6 +41,13 @@ let func = (ur, arr) => {
       }
       parce(name1);
       parce(name2);
+
+      arr.sort((a, b) => {
+        var nameA=a.match("[А-Я][а-я]"), nameB=b.match("[А-Я][а-я]")
+        if (nameA < nameB) return -1
+        if (nameA > nameB) return 1
+        return 0
+      });
     }
   });
 }
@@ -63,23 +70,13 @@ app.get("/", (req, res) => {
           <table>
             <tbody>
               <h3>Top</h3>
-              ${arr_top.sort((a, b) => {
-                var nameA=a.match("[А-Я][а-я]"), nameB=b.match("[А-Я][а-я]")
-                if (nameA < nameB) return -1
-                if (nameA > nameB) return 1
-                return 0
-              }).join('')}
+              ${arr_top.join('')}
             </tbody>
           </table>
           <table>
             <tbody>
               <h3>New</h3>
-              ${arr_new.sort((a, b) => {
-                var nameA=a.match("[А-Я][а-я]"), nameB=b.match("[А-Я][а-я]")
-                if (nameA < nameB) return -1
-                if (nameA > nameB) return 1
-                return 0
-              }).join('')}
+              ${arr_new.join('')}
             </tbody>
           </table>
         </body>
