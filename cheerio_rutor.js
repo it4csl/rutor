@@ -8,9 +8,9 @@ const app = express();
 
 const url_new = "http://rutor.info/new", url_top = "http://rutor.info/top";
 
-let arr_top = [], arr_new = [];
+const arr_top = [], arr_new = [];
 
-sort_strarr = (arr) => {
+const sort_strarr = (arr) => {
   arr.sort((a, b) => {
     let nameA=a.match("[А-Я][а-я]"), nameB=b.match("[А-Я][а-я]");
     if (nameA < nameB) return -1;
@@ -19,13 +19,13 @@ sort_strarr = (arr) => {
   });
 }
 
-let func = (ur, arr) => {
+const func = (ur, arr) => {
   request(ur, (error, response, body) => {
     if(!error) {
       $ = cheerio.load(body);
-      let name1 = $(".tum a"), name2 = $(".gai a");
+      const name1 = $(".tum a"), name2 = $(".gai a");
 
-      parce = (arg) => {
+      const parce = (arg) => {
         for (let i = 0; i < $(arg).length; i++) {
           let text = $(arg[i]).text();
 
