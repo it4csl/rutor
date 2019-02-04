@@ -19,8 +19,8 @@ const sort_strarr = (arr) => {
   });
 }
 
-const func = (ur, arr) => {
-  request(ur, (error, response, body) => {
+const func = (url, arr) => {
+  request(url, (error, response, body) => {
     if(!error) {
       $ = cheerio.load(body);
       const name1 = $(".tum a"), name2 = $(".gai a");
