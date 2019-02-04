@@ -4,35 +4,36 @@ const express = require("express");
 const cheerio = require("cheerio");
 const request = require("request");
 
-let app = express();
+const app = express();
 
-let url_new = "http://rutor.info/new";
-let url_top = "http://rutor.info/top";
+const url_new = "http://rutor.info/new", url_top = "http://rutor.info/top";
 
-let arr_top = [];
-let arr_new = [];
+let arr_top = [], arr_new = [];
+
+sort_strarr = (arr) => {
+  arr.sort((a, b) => {
+    let nameA=a.match("[А-Я][а-я]"), nameB=b.match("[А-Я][а-я]");
+    if (nameA < nameB) return -1;
+    if (nameA > nameB) return 1;
+    return 0;
+  });
+}
 
 let func = (ur, arr) => {
   request(ur, (error, response, body) => {
     if(!error) {
       $ = cheerio.load(body);
-      let name1 = $(".tum a");
-      let name2 = $(".gai a");
+      let name1 = $(".tum a"), name2 = $(".gai a");
 
-      let parce = (arg) => {
+      parce = (arg) => {
         for (let i = 0; i < $(arg).length; i++) {
           let text = $(arg[i]).text();
 
           if(text.length === 0) continue;
           let found = false;
 
-          if( text.indexOf("iTunes") !== -1 && text.indexOf("UKR") === -1) {
-            found = true;
-          }
-
-          if( text.indexOf("Лицензия") !== -1 && text.indexOf("PC") === -1) {
-            found = true;
-          }
+          if( text.indexOf("iTunes") !== -1 && text.indexOf("UKR") === -1) found = true;
+          if( text.indexOf("Лицензия") !== -1 && text.indexOf("PC") === -1) found = true;
           
           if (found) {
             arr.push(`<tr><td><a href="http://rutor.info/${$(arg[i]).attr("href")}">${text}</a></td></tr>`);
@@ -41,13 +42,7 @@ let func = (ur, arr) => {
       }
       parce(name1);
       parce(name2);
-
-      arr.sort((a, b) => {
-        let nameA=a.match("[А-Я][а-я]"), nameB=b.match("[А-Я][а-я]")
-        if (nameA < nameB) return -1
-        if (nameA > nameB) return 1
-        return 0
-      });
+      sort_strarr(arr);
     }
   });
 }
@@ -61,8 +56,8 @@ app.get("/", (req, res) => {
         <head>
           <meta charset="utf-8">
           <style>
-            body, table{ font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif; font-size: 12px; }
-            a{ text-decoration: none; color: #000000; }
+            body, table { font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif; font-size: 12px; }
+            a { text-decoration: none; color: #000000; }
             tr:hover { background: #bccae0; color: #ffe; } 
           </style>
         </head>
