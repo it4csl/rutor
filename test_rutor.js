@@ -13,7 +13,7 @@ const arr_html = [];
 
 let out_obj = (arr_s, arr_o) => {
   for(let i = 0; i < arr_s.length; i++) {
-    let out = `<tr><td>${i+1})</td><td><a href="http://rutor.info${arr_s[i].url}">${arr_s[i].text}</a></td><td>${arr_s[i].size}</td></tr>`;
+    let out = `<tr><td>${i+1})</td><td><a href="${arr_s[i].url}">${arr_s[i].text}</a></td><td>${arr_s[i].size}</td></tr>`;
     arr_o.push(out);
   }
 }
