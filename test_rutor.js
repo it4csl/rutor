@@ -32,7 +32,7 @@ request(url_top, (error, response, body) => {
       }
     }
     //get_data(tum, arr_top);
-    let size = $($($(tum[61]).children("td"))).text();  // разобраться с размером когда -1 td
+    let size = $($($(tum[61]).children("td"))).text();  // разобраться с размером когда -1 td (раздача без комментариев)
 
     console.log(size)
     
