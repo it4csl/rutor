@@ -11,13 +11,13 @@ url_z_kino = "http://rutor.info/browse/0/1/0/2";
 const arr_obj = [];
 const arr_html = [];
 
-let out_obj = (arr_s, arr_o) => {
+function out_obj(arr_s, arr_o) {
   for(let i = 0; i < arr_s.length; i++) {
     let out = `<tr><td>${i+1})</td><td><a href="${arr_s[i].url}">${arr_s[i].text}</a></td><td>${arr_s[i].size}</td></tr>`;
     arr_o.push(out);
   }
 }
-let parse = (url) => {
+function parse(url) {
   request(url, (error, response, body) => {
     if(!error) {
       $ = cheerio.load(body);
