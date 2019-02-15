@@ -17,7 +17,7 @@ function out_obj(arr_s, arr_o) {
     arr_o.push(out);
   }
 }
-function parse(url, callback) {
+function parse(url) {
   request(url, (error, response, body) => {
     if(!error) {
       $ = cheerio.load(body);
@@ -40,16 +40,14 @@ function parse(url, callback) {
         }
       }
       get_data(obj_list_tr, arr_obj);
-      callback();
     }
   });
-  
 }
 
 
-for(let i = 0; i < 10; i++) {
+for(let i = 0; i < 2; i++) {
   new_url = `http://rutor.info/browse/${i}/1/0/2`;
-  parse(new_url, function() { out_obj(arr_obj, arr_html) });
+  parse(new_url);
 }
 
 // arr_obj.sort((a, b) => {
