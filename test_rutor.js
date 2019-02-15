@@ -17,7 +17,7 @@ function out_obj(arr_s, arr_o) {
     arr_o.push(out);
   }
 }
-function parse(url) {
+function parse(url, callback) {
   request(url, (error, response, body) => {
     if(!error) {
       $ = cheerio.load(body);
@@ -40,14 +40,18 @@ function parse(url) {
         }
       }
       get_data(obj_list_tr, arr_obj);
+      callback();
     }
   });
+  
 }
+
 
 for(let i = 0; i < 10; i++) {
   new_url = `http://rutor.info/browse/${i}/1/0/2`;
-  parse(new_url);
+  parse(new_url, function() { out_obj(arr_obj, arr_html) });
 }
+
 // arr_obj.sort((a, b) => {
 //   let nameA=a.text, nameB=b.text;
 //   if (nameA < nameB) return -1;    // разобраться с сортировкой и асинхронностью
@@ -55,7 +59,7 @@ for(let i = 0; i < 10; i++) {
 //   return 0;
 // });
 
-setTimeout(() => out_obj(arr_obj, arr_html), 5000);
+// setTimeout(() => out_obj(arr_obj, arr_html), 5000);
 
 app.get("/", (req, res) => {
   res.end(`
