@@ -13,7 +13,7 @@ out_obj = (arr_s, arr_o) ->
         <td><a href="#{s.url}">#{s.text}</a></td>
         <td>#{s.size}</td>
       </tr>
-      """#"
+      """
     arr_o.push out
   return
 
@@ -49,7 +49,6 @@ parse = (url, cb) ->
   cb()
   return
 
-url_z_kino = 'http://rutor.info/browse/0/1/0/2'
 arr_obj = []
 arr_html = []
 
@@ -57,8 +56,6 @@ for i in [0 ... 60]
   console.log "page #{i}"
   new_url = "http://rutor.info/browse/#{i}/1/0/2"
   parse new_url, ()->
-
-
 
 app.get '/', (req, res) ->
   arr_html = []
