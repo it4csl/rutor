@@ -26,7 +26,6 @@ parse = (url, cb) ->
   for obj, i in obj_list_tr
     continue if i == 0
     
-
     text = $($(obj).children('td').children('a')[2]).text()
     continue if text.indexOf("BadBajo") != -1
     continue if text.indexOf("HDRezka Studio") != -1
